@@ -48,7 +48,7 @@ gitlab_projects.find_all do |cur_proj|
 
       # We can gave deleted users (i.e. former employees) who created non
       # expiring pipelines
-      if !(build_user = User.find_by(id: build.user_id)) build_user = User.ghost 
+      build_user = User.ghost if !(build_user = User.find_by(id: build.user_id))
 
       build_username = "UNKNOWN"
 
