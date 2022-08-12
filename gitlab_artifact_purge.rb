@@ -36,7 +36,7 @@ gitlab_projects.find_all do |cur_proj|
   builds_to_purge.find_each do |build|
     #We want to keep artifacts for tags
     #if build.erasable? && build.tag == false && !build.ref.eql?("master")
-    #if build.erasable? && !build.ref.eql?("master") && (?:build.ref =~ /rc\d+/) && !(build.ref =~ /(?:FilterN|FilterN|FilterN|FilterN)/)
+    #if build.erasable? && !build.ref.eql?("master") && (build.ref =~ /rc\d+/) && !(build.ref =~ /(?:FilterN|FilterN|FilterN|FilterN)/)
     if !(build.ref =~ /(?:FilterN|FilterN|FilterN|FilterN)/) && !build.pipeline.ref_exists?
 
       # At least in our environment it's seemingly possible to
