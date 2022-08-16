@@ -64,6 +64,10 @@ gitlab_projects.find_all do |cur_proj|
       #if build_user && build_user.blocked?
       # Note: we need a corresponding end if we use this conditional
 
+      # Another option for manual review (check the created_at date compared to
+      # now, the delta is in #days
+      #build_age = DateTime.now.mjd - DateTime.parse(build.created_at.to_s()).mjd
+
       puts "#{cur_proj},#{build.id},#{build.pipeline.id},#{build_username},#{build.created_at},#{build.ref},#{build.pipeline.ref_exists?},#{build.pipeline.latest?},#{build.tag},#{build.erasable?},#{number_to_human_size(build.artifacts_size)}" if verbose
 
       # Do the actual artifact erase
